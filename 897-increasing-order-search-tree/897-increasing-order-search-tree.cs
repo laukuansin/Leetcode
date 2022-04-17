@@ -27,7 +27,6 @@ public class Solution {
             int val = stack.Pop();
             TreeNode tmp = new TreeNode(val);
             trackTree.right=tmp;
-            trackTree.left=null;
             trackTree=trackTree.right;
         }
         return newTree.right;
