@@ -8,14 +8,9 @@ public class MyHashMap {
     }
     
     public void Put(int key, int value) {
-        if(checks[key])
-        {
-            keysVals[key]=value;
-        }
-        else{
-            checks[key]=true;
-            keysVals[key]=value;
-        }
+        checks[key]=true;
+        keysVals[key]=value;
+        
     }
     
     public int Get(int key) {
