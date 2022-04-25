@@ -3,40 +3,30 @@
 
 class PeekingIterator {
     // iterators refers to the first element of the array.
-    int currentPos = 0;
-    int size=0;
-    int[] arr;
+    IEnumerator<int> iterator;
+    bool hasNext;
     
     public PeekingIterator(IEnumerator<int> iterator) {
         // initialize any member here.
-        int idx=0;
-        arr = new int[1000];
-        arr[idx]=iterator.Current;
-        while (iterator.MoveNext())
-        {
-            arr[++idx]=iterator.Current;
-            //size++;
-        }
+        this.iterator=iterator;
+        hasNext=true;
     }
     
     // Returns the next element in the iteration without advancing the iterator.
     public int Peek() {
-        return arr[currentPos];
+        return iterator.Current;
     }
     
     // Returns the next element in the iteration and advances the iterator.
     public int Next(){
-        int cur = arr[currentPos++];
-
-        return cur;
+        var val =iterator.Current;
+        hasNext=iterator.MoveNext();
+        
+        return val;
     }
     
     // Returns false if the iterator is refering to the end of the array of true otherwise.
     public bool HasNext() {
-	    if(arr[currentPos]==0)
-        {
-            return false;
-        }
-        return true;
+        return hasNext;
     }
 }
