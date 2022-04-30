@@ -29,7 +29,7 @@ class Solution {
     {
         visited.add(a);
         
-        if(graph.get(a)==null||graph.get(a).size()==0)
+        if(graph.get(a).size()==0)
         {
             return;
         }
