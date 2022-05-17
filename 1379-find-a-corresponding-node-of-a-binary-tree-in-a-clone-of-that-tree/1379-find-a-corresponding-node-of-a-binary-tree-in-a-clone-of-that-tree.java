@@ -30,6 +30,7 @@ class Solution {
         if(ori==target)
         {
             ansNode=clo;
+            return;
         }
         helper(ori.right,clo.right);
     }
