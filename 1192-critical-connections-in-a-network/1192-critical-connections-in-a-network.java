@@ -1,6 +1,6 @@
 class Solution {
     int[] disc, low;
-    int time = 1;
+    int times = 1;
     List<List<Integer>> ans = new ArrayList<>();
     Map<Integer,List<Integer>> edgeMap = new HashMap<>();
     public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
@@ -16,7 +16,7 @@ class Solution {
         return ans;
     }
     public void dfs(int curr, int prev) {
-        disc[curr] = low[curr] = time++;
+        disc[curr] = low[curr] = times++;
         for (int next : edgeMap.get(curr)) {
             if (disc[next] == 0) {
                 dfs(next, curr);
