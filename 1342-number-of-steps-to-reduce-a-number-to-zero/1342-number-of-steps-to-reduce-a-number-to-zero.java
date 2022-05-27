@@ -6,7 +6,8 @@ class Solution {
         {
             if(num%2==0)
             {
-                num/=2;
+                //num/=2;
+                num>>=1;
             }
             else{
                 num--;
