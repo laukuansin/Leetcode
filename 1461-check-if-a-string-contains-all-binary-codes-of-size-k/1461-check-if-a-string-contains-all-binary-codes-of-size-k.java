@@ -7,13 +7,16 @@ class Solution {
          {
              String str = s.substring(i,i+k);
              int num =  Integer.parseInt(str, 2);
-             set.add(num);
+             if(!set.contains(num))
+             {
+                 
+                 set.add(num);
+                 size--;
+                 if(size==0)
+                     return true;
+             }
          }
-        if(set.size()<size)
-        {
-            return false;
-        }
     
-        return true;
+        return false;
     }
 }
