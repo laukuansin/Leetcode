@@ -19,10 +19,7 @@ class Solution {
                 while(hashtable.get(nums[end])>1)
                 {
                     hashtable.put(nums[start],hashtable.getOrDefault(nums[start],0)-1);
-                    track-=nums[start];
-                    start++;
-                    
-
+                    track-=nums[start++];
                 }
             }
             
