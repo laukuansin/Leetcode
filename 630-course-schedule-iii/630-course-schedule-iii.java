@@ -1,5 +1,6 @@
 class Solution {
     public int scheduleCourse(int[][] courses) {
+        /*
         Arrays.sort(courses, Comparator.comparingDouble(o -> o[1]));
         int max=0;
         int time=0;
@@ -32,5 +33,27 @@ class Solution {
             }
         }
         return max;
+        */
+         Arrays.sort(courses, Comparator.comparingDouble(o -> o[1]));
+        PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
+        int time=0;
+        int count=0;
+        for(int[]arr: courses)
+        {
+            if(time+arr[0]<=arr[1])
+            {
+                time+=arr[0];
+                queue.add(arr[0]);
+            }
+            else{
+                if(!queue.isEmpty()&&queue.peek()>arr[0])
+                {
+                    time+=arr[0]-queue.poll();
+                    queue.add(arr[0]);
+                }
+            }
+        }
+        
+        return queue.size();
     }
 }
