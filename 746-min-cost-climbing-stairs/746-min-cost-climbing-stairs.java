@@ -8,7 +8,6 @@ class Solution {
         {
         
            dp[i] = (i<cost.length?cost[i]:0)+Math.min(dp[i-1],dp[i-2]);
-            System.out.println(dp[i]);
         }
         return Math.min(dp[dp.length-1],dp[dp.length-2]);
     }
