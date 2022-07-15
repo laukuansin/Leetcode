@@ -6,6 +6,11 @@ class Solution {
         {
             for(int j=0;j<grid[0].length;j++)
             {
+                if(grid[i][j]==0||visited[i][j])
+                {
+                    visited[i][j]=true;
+                    continue;
+                }
                 max=Math.max(max,helper(grid,i,j,visited));
             }
         }
