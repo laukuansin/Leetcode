@@ -28,29 +28,15 @@ class Solution {
         }
         return false;
         */
-        int row=matrix.length;
-        int col=matrix[0].length;
-        for(int i=0;i<row;i++)
-        {
-            
-            int start=0;
-            int end=col-1;
-            
-            while(start<=end)
-            {
-                int middle=(start+end)/2;
-                if(matrix[i][middle]==target)
-                {
-                    return true;
-                }
-                else if(matrix[i][middle]>target)
-                {
-                    end=middle-1;
-                }
-                else{
-                    start=middle+1;
-                }
-            }
+        int n=matrix.length, m=matrix[0].length;
+        int i=0, j=m-1;
+        while(i<n&&j>=0){
+            if(target==matrix[i][j])
+                return true;
+            if(target>matrix[i][j])
+                i+=1;
+            else
+                j-=1;
         }
         return false;
     }
