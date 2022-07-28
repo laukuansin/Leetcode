@@ -16,8 +16,7 @@ class Solution {
         {
             hashTable.put(c,hashTable.getOrDefault(c,0)-1);
         }
-        Set<Entry<Character,Integer>> entrySet = hashTable.entrySet();
-        for(Entry<Character,Integer> set:entrySet){  
+        for(Map.Entry<Character,Integer> set:hashTable.entrySet()){  
             if(set.getValue()!=0)
             {
                 return false;
