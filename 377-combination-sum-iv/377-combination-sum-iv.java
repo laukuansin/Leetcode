@@ -1,21 +1,19 @@
 class Solution {
+     int count =0;
     public int combinationSum4(int[] nums, int target) {
-        Integer[] memo = new Integer[target + 1];
-        return recurse(nums, target, memo);
+        int[] dp = new int[target + 1];
+        dp[0] = 1;
+        for (int i = 1; i <= target; i++) {
+            for (int x : nums) {
+                if (x > i) {
+                    continue;
+                }
+
+                dp[i] += dp[i - x];
+            }
+        }
+
+        return dp[target];
     }
     
-    public int recurse(int[] nums, int remain, Integer[] memo){
-        
-        if(remain < 0) return 0;
-        if(memo[remain] != null) return memo[remain];
-        if(remain == 0) return 1;
-        
-        int ans = 0;
-        for(int i = 0; i < nums.length; i++){
-            ans += recurse(nums, remain - nums[i], memo);
-        }
-        
-        memo[remain] = ans;
-        return memo[remain];
-    }
 }
