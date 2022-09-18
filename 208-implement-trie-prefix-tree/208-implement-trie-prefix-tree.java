@@ -53,8 +53,7 @@ class Trie {
             int j=charArr[i]-'a';
             if(cur.children[j]==null)
             {
-                check= false;
-                break;
+                return false;
             }
             cur=cur.children[j];
         }
