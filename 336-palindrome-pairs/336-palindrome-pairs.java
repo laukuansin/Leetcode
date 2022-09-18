@@ -1,52 +1,86 @@
 class Solution {
+    class TrieNode{
+        TrieNode[] children;
+        List<Integer> restPalindrome;
+        int wordIndex;
+        TrieNode(){
+            children = new TrieNode[26];
+            restPalindrome = new ArrayList<>();
+            wordIndex=-1;
+        }
+        
+    }
+    TrieNode root = new TrieNode();
+        List<List<Integer>> res = new ArrayList<>();
+        int n=0;
     public List<List<Integer>> palindromePairs(String[] words) {
-        HashMap<String,Integer> wordMap = new HashMap<>();
-        Set<Integer> set = new TreeSet<>();
-        int n = words.length;
+        n=words.length;
         
-        for(int i=0;i<n;i++){
-            wordMap.put(words[i],i);
-            set.add(words[i].length());
+        for(int i=0;i<n;i++)
+        {
+            add(words[i],i);
         }
         
-        List<List<Integer>> ans = new ArrayList<>();
-        
-        for(int i=0;i<n;i++){
-            int length = words[i].length();//abcd
-            
-            if(length ==1){
-                if(wordMap.containsKey("")){
-                    ans.add(Arrays.asList(i, wordMap.get("")));
-                    ans.add(Arrays.asList(wordMap.get(""), i));
-                }
-                continue;
-            }
-            String reverse= new StringBuilder(words[i]).reverse().toString();//dcba
-            if(wordMap.containsKey(reverse) && wordMap.get(reverse) != i)
-                ans.add(Arrays.asList(i,wordMap.get(reverse)));
-            
-            for(Integer k:set){
-                if(k==length)
-                    break;
-                if(isPalindrome(reverse,0,length-1-k)){
-                    String s1 = reverse.substring(length-k);
-                    if(wordMap.containsKey(s1))
-                        ans.add(Arrays.asList(i,wordMap.get(s1)));
-                }
-                
-                if(isPalindrome(reverse,k,length-1)){
-                    String s2 = reverse.substring(0,k);
-                    if(wordMap.containsKey(s2))
-                        ans.add(Arrays.asList(wordMap.get(s2),i));
-                }
-            }
+        for(int i=0;i<n;i++)
+        {
+            search(words[i],i);
         }
-        return ans;
+        return res;
     }
     
-    private boolean isPalindrome(String s, int left, int right){
+    public void add(String word,int index)
+    {
+        char[] chrArr = word.toCharArray();
+        TrieNode cur = root;
+        for(int i=word.length()-1;i>=0;i--)
+        {
+            int idx = chrArr[i]-'a';
+            if(isPalindrome(chrArr,0,i))
+            {
+                cur.restPalindrome.add(index);
+            }
+            if(cur.children[idx]==null)
+            {
+                cur.children[idx] = new TrieNode();
+            }
+            cur=cur.children[idx];
+        }
+        cur.wordIndex=index;
+    }
+    
+    public void search(String word, int index)
+    {
+        char[] chrArr = word.toCharArray();
+        TrieNode cur = root;
+        for(int i=0;i<word.length();i++)
+        {
+            int idx = chrArr[i]-'a';
+            if(cur.wordIndex!=-1&&isPalindrome(chrArr,i,word.length()-1))
+            {
+                res.add(Arrays.asList(index,cur.wordIndex));
+            }
+            
+            if(cur.children[idx]==null)
+            {
+                return;
+            }
+            cur=cur.children[idx];
+        }
+        
+        if(cur.wordIndex!=-1&&index!=cur.wordIndex)
+        {
+             res.add(Arrays.asList(index,cur.wordIndex));
+        }
+        
+        for(int i:cur.restPalindrome)
+        {
+            res.add(Arrays.asList(index,i));
+        }
+    }
+    
+    private boolean isPalindrome(char[] chrArr, int left, int right){
         while(left<right)
-            if(s.charAt(left++)!=s.charAt(right--))
+            if(chrArr[left++]!=chrArr[right--])
                 return false;
         return true;
     }
