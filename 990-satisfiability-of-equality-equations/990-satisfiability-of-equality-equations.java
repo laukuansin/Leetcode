@@ -14,10 +14,7 @@ class UnionFind{
     {
         int rootX= find(x);
         int rootY= find(y);
-        
-        if(rootX==rootY)
-            return true;
-        return false;
+        return rootX==rootY;
     }
     
     public int find(int x)
@@ -48,28 +45,22 @@ class Solution {
         for(String equation:equations)
         {
             char[] charArray = equation.toCharArray();
-            int x = charArray[0]-'a';
-            int y= charArray[3]-'a';
             if(charArray[1]=='=')
             {
-                uf.union(x,y);
+                uf.union(charArray[0]-'a',charArray[3]-'a');
             }
             
         }
         for(String equation:equations)
         {
             char[] charArray = equation.toCharArray();
-            int x = charArray[0]-'a';
-            int y= charArray[3]-'a';
             if(charArray[1]=='!')
             {
-                if(uf.checkBind(x,y))
+                if(uf.checkBind(charArray[0]-'a',charArray[3]-'a'))
                 {
                     return false;
                 }
             }
-            
-            
         }
         
         return true;
