@@ -24,22 +24,18 @@ class Solution {
         
         ListNode prev =null;
         ListNode current = head;
-        ListNode next = current.next;
         int track =1;
         while(track<=count)
         {
             prev=current;
             current = prev.next;
-            if(next != null)
-                next=next.next;
-            
             track++;
         }
         if(prev==null)
         {
             head=head.next;
         }
-        else if(next==null)
+        else if(current.next==null)
         {
             prev.next=null;
         }
