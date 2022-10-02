@@ -27,6 +27,7 @@ class Solution {
         {
             ans=(ans+numRollsToTarget(n-1,k,target-i))%MOD;
         }
-        return dp[n][target]=ans%MOD;
+        dp[n][target]=ans%MOD;
+        return dp[n][target];
     }
 }
