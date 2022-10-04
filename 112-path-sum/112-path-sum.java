@@ -24,6 +24,7 @@ class Solution {
                 return true;
             }
         }
+        /*
        boolean check1=false;
         boolean check2=false;
         if(root.left!=null)
@@ -32,6 +33,8 @@ class Solution {
             check2=hasPathSum(root.right,targetSum-root.val);
         
         return check1||check2;
+        */
+        return hasPathSum(root.left,targetSum-root.val)||hasPathSum(root.right,targetSum-root.val);
     }
     
 }
