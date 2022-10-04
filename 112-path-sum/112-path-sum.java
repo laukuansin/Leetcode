@@ -24,16 +24,6 @@ class Solution {
                 return true;
             }
         }
-        /*
-       boolean check1=false;
-        boolean check2=false;
-        if(root.left!=null)
-            check1=hasPathSum(root.left,targetSum-root.val);
-        if(root.right!=null)
-            check2=hasPathSum(root.right,targetSum-root.val);
-        
-        return check1||check2;
-        */
         return hasPathSum(root.left,targetSum-root.val)||hasPathSum(root.right,targetSum-root.val);
     }
     
