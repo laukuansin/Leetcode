@@ -24,7 +24,6 @@ class Solution {
             return treeNode;
         }
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
-        //TreeNode tmp = root;
         int curDepth=1;
         queue.add(root);
         
@@ -50,21 +49,17 @@ class Solution {
                 }
                 if(curDepth==depth-1)
                 {
-                    TreeNode left = new TreeNode(val);
-                    TreeNode right = new TreeNode(val);
-                    
-                    tmp.left=left;
-                    tmp.right=right;
+                    tmp.left=new TreeNode(val);
+                    tmp.right=new TreeNode(val);
                     if(tmpLeft!=null)
                     {
-                        left.left=tmpLeft;
+                        tmp.left.left=tmpLeft;
                     }
                     if(tmpRight!=null)
                     {
-                        right.right=tmpRight;
+                        tmp.right.right=tmpRight;
                     }
                 }
-                
             }
             
             curDepth++;
