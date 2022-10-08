@@ -17,10 +17,8 @@ class Solution {
                 {
                     return target;
                 }
-                if(Math.abs(target-res)>Math.abs(target-tmpTotal))
-                {
-                    res = tmpTotal;
-                }
+                
+                res = Math.abs(target-res)>Math.abs(target-tmpTotal)?tmpTotal:res;
                 
                 if(target-nums[i]>nums[start]+nums[end])
                 {
