@@ -19,6 +19,11 @@ class Solution {
                 }
                 
                 res = Math.abs(target-res)>Math.abs(target-tmpTotal)?tmpTotal:res;
+                while(start<end&&nums[start]==nums[start+1])
+                    start++;
+                
+                while(start<end&&nums[end]==nums[end-1])
+                    end--;
                 
                 if(target-nums[i]>nums[start]+nums[end])
                 {
