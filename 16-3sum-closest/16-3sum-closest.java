@@ -5,6 +5,8 @@ class Solution {
         int res = Integer.MAX_VALUE;
         for(int i=0;i<=size-3;i++)
         {
+            if(i>0&&nums[i]==nums[i-1])
+                continue;
             int start = i+1;
             int end = nums.length-1;
             
