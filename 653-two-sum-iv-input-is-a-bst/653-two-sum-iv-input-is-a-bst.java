@@ -51,11 +51,14 @@ class Solution {
         {
             return false;
         }
+        if(findTarget(root.left,k))
+            return true;
         if(ht.containsKey(k-root.val))
             return true;   
         else
             ht.put(root.val,1);
-        return findTarget(root.left,k)||findTarget(root.right,k);
-        
+        if(findTarget(root.right,k))
+            return true;
+        return false;
     }
 }
