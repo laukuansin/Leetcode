@@ -15,7 +15,9 @@
  */
 import java.util.Hashtable;
 class Solution {
+    Hashtable<Integer,Integer> ht = new Hashtable<>();
     public boolean findTarget(TreeNode root, int k) {
+        /* BFS
         Hashtable<Integer,Integer> ht = new Hashtable<>();
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
@@ -44,5 +46,17 @@ class Solution {
             }
         }
         return false;
+        */
+        if(root==null)
+        {
+            return false;
+        }
+        if(ht.containsKey(k-root.val))
+        {
+            return true;   
+        }
+        ht.put(root.val,1);
+        return findTarget(root.left,k)||findTarget(root.right,k);
+        
     }
 }
