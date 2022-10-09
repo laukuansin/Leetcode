@@ -52,10 +52,9 @@ class Solution {
             return false;
         }
         if(ht.containsKey(k-root.val))
-        {
             return true;   
-        }
-        ht.put(root.val,1);
+        else
+            ht.put(root.val,1);
         return findTarget(root.left,k)||findTarget(root.right,k);
         
     }
