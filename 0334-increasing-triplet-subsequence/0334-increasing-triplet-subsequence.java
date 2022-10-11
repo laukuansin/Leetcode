@@ -5,9 +5,9 @@ class Solution {
         
         for(int i=0;i<nums.length;i++)
         {
-            if(firstSmall>=nums[i])
+            if(nums[i]<=firstSmall)
                 firstSmall = nums[i];
-            else if (secondSmall>=nums[i])
+            else if (nums[i]<=secondSmall)
                 secondSmall=nums[i];
             else
                 return true;
