@@ -29,10 +29,8 @@ class Solution {
             
             fast = fast.next.next;
         }
-      
-            prev.next=slow.next;
-            slow.next=null;
-        
+        prev.next=slow.next;
+        slow.next=null;
         return head;  
     }
 }
