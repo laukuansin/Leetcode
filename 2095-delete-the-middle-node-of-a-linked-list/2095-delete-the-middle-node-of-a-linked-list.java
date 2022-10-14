@@ -26,17 +26,13 @@ class Solution {
             slow = slow.next;
             if(fast.next.next==null)
                 break;
+            
             fast = fast.next.next;
         }
-        if(slow.next==null)
-        {
-            prev.next = null;   
-        }
-        else
-        {
+      
             prev.next=slow.next;
             slow.next=null;
-        }
-        return head;   
+        
+        return head;  
     }
 }
