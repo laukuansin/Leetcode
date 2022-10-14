@@ -22,9 +22,6 @@ class Solution {
         while(fast!=null&&fast.next!=null)
         {
             prev= prev.next;
-            if(fast.next.next==null)
-                break;
-            
             fast = fast.next.next;
         }
         prev.next=prev.next.next;
