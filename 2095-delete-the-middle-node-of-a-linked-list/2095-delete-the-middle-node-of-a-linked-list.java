@@ -17,20 +17,17 @@ class Solution {
         dummy.next = head;
         
         ListNode prev = dummy;
-        ListNode slow = prev.next;
         ListNode fast = prev.next;
         
         while(fast!=null&&fast.next!=null)
         {
             prev= prev.next;
-            slow = slow.next;
             if(fast.next.next==null)
                 break;
             
             fast = fast.next.next;
         }
-        prev.next=slow.next;
-        slow.next=null;
+        prev.next=prev.next.next;
         return head;  
     }
 }
