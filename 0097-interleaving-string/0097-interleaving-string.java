@@ -18,11 +18,11 @@ class Solution {
                 }
                 else if(i==0)
                 {
-                    dp[i][j] = s2.substring(0,j).equals(s3.substring(0,j));
+                    dp[i][j] = s2.charAt(j-1)==s3.charAt(j-1)&&dp[i][j-1];//s2.substring(0,j).equals(s3.substring(0,j));
                 }
                 else if(j==0)
                 {
-                    dp[i][j] = s1.substring(0,i).equals(s3.substring(0,i));
+                    dp[i][j] = s1.charAt(i-1)==s3.charAt(i-1)&&dp[i-1][j];//s1.substring(0,i).equals(s3.substring(0,i));
                 }
                 else{
                     dp[i][j] = (s1.charAt(i-1)==s3.charAt(i+j-1)&& dp[i-1][j])||(s2.charAt(j-1)==s3.charAt(i+j-1)&&dp[i][j-1]);
