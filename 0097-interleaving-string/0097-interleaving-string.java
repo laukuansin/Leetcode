@@ -1,57 +1,37 @@
 class Solution {
-    int s1Length;
-    int s2Length;
-    int s3Length;
-    char[] charArrS1;
-    char[] charArrS2;
-    char[] charArrS3;
-    int[][] memo;
-    boolean check = false;
+  
     public boolean isInterleave(String s1, String s2, String s3) {
-        s1Length = s1.length();
-        s2Length = s2.length();
-        s3Length = s3.length();
-        memo = new int[s1Length+1][s2Length+1];
-        for(int i=0;i<s1Length;i++)
+        int m = s1.length();
+        int n = s2.length();
+        
+        if(m+n!=s3.length()) return false;
+        
+        boolean[][] dp = new boolean[m+1][n+1];
+        
+        for(int i=0;i<=m;i++)
         {
-            for(int j=0;j<s2Length;j++)
+            for(int j=0;j<=n;j++)
             {
-                memo[i][j]=-1;
+                if(i==0&&j==0)//default case
+                {
+                    dp[i][j]=true;//if str1 is empty and str2 is empty, then it is true to interleave an empty str3
+                }
+                else if(i==0)
+                {
+                    dp[i][j] = s2.substring(0,j).equals(s3.substring(0,j));
+                }
+                else if(j==0)
+                {
+                    dp[i][j] = s1.substring(0,i).equals(s3.substring(0,i));
+                }
+                else{
+                    dp[i][j] = (s1.charAt(i-1)==s3.charAt(i+j-1)&& dp[i-1][j])||(s2.charAt(j-1)==s3.charAt(i+j-1)&&dp[i][j-1]);
+                }
             }
         }
-        if(s1Length+s2Length!=s3Length)
-        {
-            return false;
-        }
-        charArrS1 = s1.toCharArray();
-        charArrS2 = s2.toCharArray();
-        charArrS3 = s3.toCharArray();
-        helper(0,0,0);
-        
-        return check;
+        return dp[m][n];
         
     }
     
-    public void helper(int s1Idx,int s2Idx, int s3Idx)
-    {
-        if((s1Idx == s1Length)&&(s2Idx==s2Length)&&(s3Idx==s3Length))
-        {
-            check = true;
-            return;
-        }
-        if(memo[s1Idx][s2Idx]==1)
-            return;
-       
-            
-        memo[s1Idx][s2Idx]=1;
-        if(s1Idx<s1Length&&charArrS3[s3Idx]==charArrS1[s1Idx])
-        {
-            helper(s1Idx+1,s2Idx,s3Idx+1);
-        }
-        if(s2Idx<s2Length&&charArrS3[s3Idx]==charArrS2[s2Idx])
-        {
-            helper(s1Idx,s2Idx+1,s3Idx+1);
-        }
-    
-    }
+  
 }
