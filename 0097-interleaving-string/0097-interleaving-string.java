@@ -11,7 +11,7 @@ class Solution {
         s1Length = s1.length();
         s2Length = s2.length();
         s3Length = s3.length();
-        memo = new int[s1Length][s2Length];
+        memo = new int[s1Length+1][s2Length+1];
         for(int i=0;i<s1Length;i++)
         {
             for(int j=0;j<s2Length;j++)
@@ -39,13 +39,11 @@ class Solution {
             check = true;
             return;
         }
-        if(s1Idx<s1Length&&s2Idx<s2Length&&memo[s1Idx][s2Idx]==1)
+        if(memo[s1Idx][s2Idx]==1)
             return;
-        if(s1Idx<s1Length&&s2Idx<s2Length)
-        {
+       
             
-            memo[s1Idx][s2Idx]=1;
-        }
+        memo[s1Idx][s2Idx]=1;
         if(s1Idx<s1Length&&charArrS3[s3Idx]==charArrS1[s1Idx])
         {
             helper(s1Idx+1,s2Idx,s3Idx+1);
