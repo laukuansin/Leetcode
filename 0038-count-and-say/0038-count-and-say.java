@@ -1,32 +1,31 @@
 class Solution {
     public String countAndSay(int n) {
-        String[] dp = new String[n+1];
-        dp[0]="1";
-        dp[1]="11";
-        
-        for(int i=2;i<n;i++)
+        return helper("1",1,n);
+    }
+    public String helper(String str,int cur, int n)
+    {
+        if(cur==n)
         {
-            char[] charArr = dp[i-1].toCharArray();
-            StringBuilder sb = new StringBuilder();
-            int count = 1;
-            int j=1;
-            for(;j<charArr.length;j++)
-            {
-                if(charArr[j]==charArr[j-1])
-                {
-                    count++;
-                }
-                else{
-                    sb.append(count);
-                    sb.append(charArr[j-1]);
-                    count=1;
-                }
-            }
-            sb.append(count);
-            sb.append(charArr[j-1]);
-            dp[i] = sb.toString();
+            return str;
         }
-        
-        return dp[n-1];
+        char[] charArr = str.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        int count = 1;
+        int j=1;
+        for(;j<charArr.length;j++)
+        {
+            if(charArr[j]==charArr[j-1])
+            {
+                count++;
+            }
+            else{
+                sb.append(count);
+                sb.append(charArr[j-1]);
+                count=1;
+            }
+        }
+        sb.append(count);
+        sb.append(charArr[j-1]);
+        return helper(sb.toString(),cur+1,n);
     }
 }
