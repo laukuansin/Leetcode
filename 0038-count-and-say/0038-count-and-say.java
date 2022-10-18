@@ -1,14 +1,9 @@
 class Solution {
     public String countAndSay(int n) {
-        String[] dp = new String[n];
+        String[] dp = new String[n+1];
         dp[0]="1";
-        
-        if(n<2)
-            return dp[n-1];
         dp[1]="11";
         
-        if(n<3)
-            return dp[n-1];
         for(int i=2;i<n;i++)
         {
             char[] charArr = dp[i-1].toCharArray();
