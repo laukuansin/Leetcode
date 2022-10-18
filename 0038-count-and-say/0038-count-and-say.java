@@ -8,7 +8,7 @@ class Solution {
         for(int i=2;i<=n;i++)
         {
             char[] charArr = dp[i-1].toCharArray();
-            String newStr = "";
+            StringBuilder sb = new StringBuilder();
             int count = 1;
             int j=1;
             for(;j<charArr.length;j++)
@@ -18,12 +18,14 @@ class Solution {
                     count++;
                 }
                 else{
-                    newStr=newStr+count+charArr[j-1];
+                    sb.append(count);
+                    sb.append(charArr[j-1]);
                     count=1;
                 }
             }
-            newStr = newStr+count+charArr[j-1];
-            dp[i] = newStr;
+            sb.append(count);
+            sb.append(charArr[j-1]);
+            dp[i] = sb.toString();
         }
         
         return dp[n];
