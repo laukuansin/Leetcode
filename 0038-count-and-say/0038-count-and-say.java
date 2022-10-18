@@ -1,11 +1,11 @@
 class Solution {
     public String countAndSay(int n) {
         String[] dp = new String[n+1];
-        dp[1]="1";
-        
-        if(n==1)
-            return dp[n];
-        for(int i=2;i<=n;i++)
+        dp[0]="1";
+        dp[1]="11";
+        if(n<2)
+            return dp[n-1];
+        for(int i=2;i<n;i++)
         {
             char[] charArr = dp[i-1].toCharArray();
             StringBuilder sb = new StringBuilder();
@@ -28,6 +28,6 @@ class Solution {
             dp[i] = sb.toString();
         }
         
-        return dp[n];
+        return dp[n-1];
     }
 }
