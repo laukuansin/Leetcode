@@ -1,24 +1,4 @@
 import java.util.Hashtable;
-class StrFreq{
-    private String str;
-    private int freq;
-    
-    StrFreq(String str,int freq)
-    {
-        this.str=str;
-        this.freq=freq;
-    }
-    
-    public String getStr()
-    {
-        return this.str;
-    }
-    
-    public int getFreq()
-    {
-        return this.freq;
-    }
-}
 class Solution {
     public List<String> topKFrequent(String[] words, int k) {
         List<String> res = new ArrayList<String>();
@@ -27,29 +7,27 @@ class Solution {
         {
             ht.put(word,ht.getOrDefault(word,0)+1);
         }
-        PriorityQueue<StrFreq> queue=new PriorityQueue<StrFreq>(ht.size(), new Comparator<StrFreq>() {
-            public int compare(StrFreq c1, StrFreq c2) {
-                int com = c2.getFreq()-c1.getFreq();
+         PriorityQueue<Map.Entry<String, Integer>> queue = new PriorityQueue<>(
+            (a,b)->{
+                int com = b.getValue()-a.getValue();
                 if(com==0)
                 {
-                    com = c1.getStr().compareTo(c2.getStr());
+                    com = a.getKey().compareTo(b.getKey());
                 }
                 
                 return com;
-                
             }
-        });
+        );
         for(Map.Entry<String, Integer> entry: ht.entrySet()) {
-            StrFreq strFreq = new StrFreq(entry.getKey(),entry.getValue());
-            queue.add(strFreq);
+            queue.add(entry);
 		}
         
         
         
         while(k>0)
         {
-            StrFreq strFreq = queue.poll();
-            res.add(strFreq.getStr());
+            Map.Entry<String, Integer> entry = queue.poll();
+            res.add(entry.getKey());
             k--;
         }
         return res;
