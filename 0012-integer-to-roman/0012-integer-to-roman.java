@@ -54,6 +54,6 @@ class Solution {
             multiple*=10;
         }
         
-        return sb.toString();
+        return new String(sb);
     }
 }
