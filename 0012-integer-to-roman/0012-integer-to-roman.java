@@ -15,16 +15,24 @@ class Solution {
         ht.put(500,"D");
         ht.put(900,"CM");
         ht.put(1000,"M");
-        
+        if(ht.containsKey(num))
+        {
+            return ht.get(num);
+        }
         StringBuilder sb = new StringBuilder();
         int multiple = 1;
-        
+       
         while(num!=0)
         {
             int ones = num%10;
             int multipleWithOnes = ones*multiple;// 4, 90, 900, 1000
             num/=10;
-            if(ones>1&&ones<4) 
+            if(ones==0)
+            { 
+                multiple*=10;
+                continue;
+            }
+            else if(ones>1&&ones<4) 
             {
                 for(int i=0;i<ones;i++)
                 {
@@ -38,12 +46,6 @@ class Solution {
                     sb.insert(0,ht.get(1*multiple));
                 }
                 sb.insert(0,ht.get(5*multiple));
-            }
-            else if(ones==0)
-            {
-                
-                multiple*=10;
-                continue;
             }
             else 
             {
