@@ -23,7 +23,6 @@ class Solution {
         {
             int ones = num%10;
             int multipleWithOnes = ones*multiple;// 4, 90, 900, 1000
-            
             num/=10;
             if(ones>1&&ones<4) 
             {
