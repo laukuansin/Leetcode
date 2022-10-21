@@ -3,8 +3,8 @@ class Solution {
     public boolean containsNearbyDuplicate(int[] nums, int k) {
         if(nums.length==1) return false;
         Hashtable<Integer,Integer> ht = new Hashtable<>();
-        int num = k>=nums.length?nums.length-1:k;
-        for(int i=0;i<=num;i++)
+        k = k>=nums.length?nums.length-1:k;
+        for(int i=0;i<=k;i++)
         {
             ht.put(nums[i],ht.getOrDefault(nums[i],0)+1);
             if(ht.get(nums[i])>1)
