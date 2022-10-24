@@ -12,7 +12,7 @@ class Solution {
         for(int i=index;i<arr.size();i++)
         {
             int newBit = getBit(arr.get(i));
-            if(!isValid(cur,newBit))
+            if((cur&newBit)!=0)
                 continue;
             helper(arr,i+1,(cur^newBit));
         }
