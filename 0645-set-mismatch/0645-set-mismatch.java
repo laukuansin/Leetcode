@@ -1,25 +1,26 @@
 class Solution {
     public int[] findErrorNums(int[] nums) {
         int size = nums.length;
-        
-        Arrays.sort(nums);
-        
-        int total = 1;
-        int actual = nums[0];
-        int repeat = 0;
-        for(int i=1;i<size;i++)
+        int[] hashtable = new int[size+1];
+        int[] res = new int[2];
+        for(int i=0;i<size;i++)
         {
-            if(nums[i]==nums[i-1])
+            hashtable[nums[i]]+=1;
+            hashtable[i+1]+=1;
+        }
+        
+        for(int i=0;i<size;i++)
+        {
+            if(hashtable[i+1]==3)
             {
-                repeat = nums[i];
+                res[0] = i+1;
             }
-            else{
-                actual+=nums[i];
+            if(hashtable[i+1]==1)
+            {
+                res[1] = i+1;
             }
-            
-            total +=(i+1);
         }
      
-        return new int[]{repeat,total-actual};
+        return res;
     }
 } 
