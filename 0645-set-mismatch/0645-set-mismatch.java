@@ -3,7 +3,7 @@ class Solution {
         int size = nums.length;
         
         Arrays.sort(nums);
-        int[] res = new int[2];
+        
         int total = 1;
         int actual = nums[0];
         int repeat = 0;
