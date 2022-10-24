@@ -20,6 +20,8 @@ class Solution {
         
         for(int i=index+1;i<arr.size();i++)
         {
+            if(getBit(arr.get(i))==0)
+                continue;
             helper(arr,i,res);
         }
     }
