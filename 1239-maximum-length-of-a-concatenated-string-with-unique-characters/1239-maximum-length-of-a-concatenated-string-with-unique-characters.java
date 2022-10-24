@@ -18,11 +18,6 @@ class Solution {
         }
     }
     
-    public boolean isValid(int curBit,int newBit)
-    {
-        return (curBit&newBit)==0;
-    }
-    
     public int getBit(String str)
     {
         char[] charArr = str.toCharArray();
