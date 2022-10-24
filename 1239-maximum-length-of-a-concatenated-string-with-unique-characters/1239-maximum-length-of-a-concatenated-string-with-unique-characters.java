@@ -16,9 +16,6 @@ class Solution {
         {
             res^=cur;
         }
-        else{
-            res = cur;
-        }
         max = Math.max(getBitLength(res),max);
         
         for(int i=index+1;i<arr.size();i++)
