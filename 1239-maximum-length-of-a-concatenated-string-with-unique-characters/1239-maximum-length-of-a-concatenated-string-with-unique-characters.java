@@ -20,9 +20,6 @@ class Solution {
     
     public boolean isValid(int curBit,int newBit)
     {
-        if(newBit==0)
-            return false;
-        
         return (curBit&newBit)==0;
     }
     
