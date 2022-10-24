@@ -1,29 +1,29 @@
 class Solution {
     public int max = 0;
     public int maxLength(List<String> arr) {
-        for(int i=0;i<arr.size();i++)
-        {
-            helper(arr,i,0);
-        }
+        helper(arr,0,0);
         return max;
     }
     
-    public void helper(List<String>arr, int index, int res)
+    public void helper(List<String>arr, int index, int cur)
     {
-        int cur = getBit(arr.get(index));
-        
-        if((cur&res)==0)
+        max = Math.max(getBitLength(cur),max);
+       
+        for(int i=index;i<arr.size();i++)
         {
-            res^=cur;
-        }
-        max = Math.max(getBitLength(res),max);
-        
-        for(int i=index+1;i<arr.size();i++)
-        {
-            if(getBit(arr.get(i))==0)
+            int newBit = getBit(arr.get(i));
+            if(!isValid(cur,newBit))
                 continue;
-            helper(arr,i,res);
+            helper(arr,i+1,(cur^newBit));
         }
+    }
+    
+    public boolean isValid(int curBit,int newBit)
+    {
+        if(newBit==0)
+            return false;
+        
+        return (curBit&newBit)==0;
     }
     
     public int getBit(String str)
