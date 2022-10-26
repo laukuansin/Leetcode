@@ -1,5 +1,3 @@
-import java.util.Hashtable;
-
 class Solution {
     public boolean checkSubarraySum(int[] nums, int k) {
          Set<Integer> modSet=new HashSet();
