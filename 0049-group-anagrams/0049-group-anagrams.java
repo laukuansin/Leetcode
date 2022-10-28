@@ -8,17 +8,19 @@ class Solution {
         
         for(String str:strs)
         {
-            char[] charArray = str.toCharArray();
-            Arrays.sort(charArray);
-            String sortStr = new String(charArray);
+            char[] charArray = new char[26];
+            for(char c: str.toCharArray())
+            {
+                charArray[c-'a']++;
+            }
             List<String> list;
-            if(ht.containsKey(sortStr))
-                list = ht.get(sortStr);
+            if(ht.containsKey(new String(charArray)))
+                list = ht.get(new String(charArray));
             else
                 list = new ArrayList<>();
             
             list.add(str);
-            ht.put(sortStr,list);
+            ht.put(new String(charArray),list);
         }
         
         for(Map.Entry<String,List<String>> m:ht.entrySet()){ 
