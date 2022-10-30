@@ -3,6 +3,9 @@ class Solution {
         int m = grid.length;
         int n = grid[0].length;
         int res = 0;
+        if(k >= m-1 + n-1) { 
+            return m + n - 2;
+        }
          boolean[][][] visited = new boolean[m][n][k + 1];
         Queue<int[]> queue = new LinkedList();
         queue.add(new int[]{0,0,k});
