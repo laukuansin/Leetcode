@@ -1,26 +1,27 @@
 class Solution {
     public int earliestFullBloom(int[] plantTime, int[] growTime) {
-        List<Pair<Integer,Integer>> list = new ArrayList<>();
+        //List<Pair<Integer,Integer>> list = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
         
         for(int i=0;i<plantTime.length;i++)
         {
-            list.add(new Pair<Integer,Integer>(plantTime[i],growTime[i]));
+            list.add(i);
         }
-        Collections.sort(list, new Comparator<Pair<Integer,Integer>>() {
-          public int compare(Pair<Integer,Integer> p1, Pair<Integer,Integer> p2) {
-            if (p1.getValue() > p2.getValue()) return -1;
-            if (p1.getValue() < p2.getValue()) return 1;
+        Collections.sort(list, new Comparator<Integer>() {
+          public int compare(Integer i1, Integer i2) {
+            if (growTime[i1] > growTime[i2]) return -1;
+            if (growTime[i1] < growTime[i2]) return 1;
             return 0;
           }});
         int cur = 0;
         int max = 0;
         
-        for(Pair<Integer,Integer> pair:list)
+        for(int idx:list)
         {
             //key: grow time
             //value: plant time
-            cur+=pair.getKey();
-            max = Math.max(cur+pair.getValue(),max);
+            cur+=plantTime[idx];
+            max = Math.max(cur+growTime[idx],max);
             //System.out.println("V:"+entry.getValue()+",key:"+entry.getKey());
         }
         
