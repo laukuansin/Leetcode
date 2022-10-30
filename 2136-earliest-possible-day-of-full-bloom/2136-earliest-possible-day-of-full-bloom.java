@@ -1,9 +1,5 @@
 class Solution {
     public int earliestFullBloom(int[] plantTime, int[] growTime) {
-        if(plantTime.length==1&&growTime.length==1)
-        {
-            return plantTime[0]+growTime[0];
-        }
         List<Pair<Integer,Integer>> list = new ArrayList<>();
         
         for(int i=0;i<plantTime.length;i++)
