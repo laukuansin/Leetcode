@@ -1,16 +1,17 @@
 class Solution {
+    public int[] ans;
     public int[] findBall(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
-        int[] ans = new int[n];
+        ans = new int[n];
         for(int i=0;i<n;i++)
         {
-            dfs(i,0,i,grid,m,n,ans);
+            dfs(i,0,i,grid,m,n);
         }
         return ans;
     }
     
-    public void dfs(int baseIndex,int x,int y,int[][] grid,int row,int col,int[] ans)
+    public void dfs(int baseIndex,int x,int y,int[][] grid,int row,int col)
     {
         if(x>=row)
         {
@@ -31,7 +32,7 @@ class Solution {
                 ans[baseIndex]=-1;
                 return;
             }
-            dfs(baseIndex,x+1,y+1,grid,row,col,ans);
+            dfs(baseIndex,x+1,y+1,grid,row,col);
         }
         else if(grid[x][y]==-1)
         {
@@ -40,7 +41,7 @@ class Solution {
                 ans[baseIndex]=-1;
                 return;
             }
-            dfs(baseIndex,x+1,y-1,grid,row,col,ans);
+            dfs(baseIndex,x+1,y-1,grid,row,col);
         }
     }
 }
