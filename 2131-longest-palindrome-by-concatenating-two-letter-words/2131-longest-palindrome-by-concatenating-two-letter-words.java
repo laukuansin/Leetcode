@@ -6,6 +6,7 @@ class Solution {
         int nonPalindromeMax = 0;
         String strPalindromeMax = "";
         int strPalindromeMaxCount = 0;
+        
         for(String word:words)
         {
             ht.put(word,ht.getOrDefault(word,0)+1);
@@ -29,12 +30,7 @@ class Solution {
             char[] charArr = m.getKey().toCharArray();
             if(charArr[0]==charArr[1])
             {
-                int value = m.getValue();
-                if(value%2!=0)
-                {
-                    value--;
-                }
-                palindromeMax += value*2;
+                palindromeMax += m.getValue()%2==0?m.getValue()*2:(m.getValue()-1)*2;
             }
             else{
                 String reverse = charArr[1]+""+charArr[0];
