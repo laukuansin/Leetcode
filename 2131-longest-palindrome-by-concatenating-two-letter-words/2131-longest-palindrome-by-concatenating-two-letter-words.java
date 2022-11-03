@@ -44,10 +44,6 @@ class Solution {
                 }
             }
         }
-        System.out.println(nonPalindromeMax+"");
-                System.out.println(palindromeMax+"");
-
-                System.out.println(strPalindromeMaxCount+"");
 
         return nonPalindromeMax+palindromeMax+strPalindromeMaxCount*2;
     }
