@@ -1,33 +1,38 @@
+import java.util.Hashtable;
 class Solution {
     public int longestPalindrome(String[] words) {
-        HashMap<String, Integer> count = new HashMap<String, Integer>();
-        for (String word : words) {
-            count.put(word,count.getOrDefault(word,0)+1);
+        Hashtable<String,Integer> ht = new Hashtable<>();
+        int palindromeMax = 0;
+        int nonPalindromeMax = 0;
+        boolean oddPalindromeCount = false;
+        for(String word:words)
+        {
+            ht.put(word,ht.getOrDefault(word,0)+1);
         }
-        int answer = 0;
-        boolean central = false;
-        for (Map.Entry<String, Integer> entry : count.entrySet()) {
-            String word = entry.getKey();
-            int countOfTheWord = entry.getValue();
-            // if the word is a palindrome
-            if (word.charAt(0) == word.charAt(1)) {
-                if (countOfTheWord % 2 == 0) {
-                    answer += countOfTheWord;
-                } else {
-                    answer += countOfTheWord - 1;
-                    central = true;
+        
+        for(Map.Entry<String,Integer> m:ht.entrySet())
+        {  
+            char[] charArr = m.getKey().toCharArray();
+            if(charArr[0]==charArr[1])
+            {
+                if(m.getValue()%2==0)
+                {
+                    palindromeMax +=m.getValue()*2;
                 }
-            // consider a pair of non-palindrome words such that one is the reverse of another
-            } else if (word.charAt(0) > word.charAt(1)) {
-                String reversedWord = "" + word.charAt(1) + word.charAt(0);
-                if (count.containsKey(reversedWord)) {
-                    answer += 2 * Math.min(countOfTheWord, count.get(reversedWord));
+                else{
+                    palindromeMax += (m.getValue()-1)*2;
+                    oddPalindromeCount = true;
+                }
+            }
+            else{
+                String reverse = charArr[1]+""+charArr[0];
+                if(ht.containsKey(reverse))
+                {
+                    nonPalindromeMax += Math.min(ht.get(reverse),m.getValue())*2;
                 }
             }
         }
-        if (central) {
-            answer++;
-        }
-        return 2 * answer;
+            
+        return oddPalindromeCount?nonPalindromeMax+palindromeMax+2:nonPalindromeMax+palindromeMax;
     }
-};
+}
