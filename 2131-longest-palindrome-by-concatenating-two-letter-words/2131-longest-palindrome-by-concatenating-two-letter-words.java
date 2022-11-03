@@ -5,6 +5,7 @@ class Solution {
         int palindromeMax = 0;
         int nonPalindromeMax = 0;
         String strPalindromeMax = "";
+        int strPalindromeMaxCount = 0;
         for(String word:words)
         {
             ht.put(word,ht.getOrDefault(word,0)+1);
@@ -14,8 +15,9 @@ class Solution {
             char[] charArr = m.getKey().toCharArray();
             if(charArr[0]==charArr[1])
             {
-                if(ht.get(m.getKey())%2!=0&&ht.get(m.getKey())>ht.getOrDefault(strPalindromeMax,0))
+                if(ht.get(m.getKey())%2!=0&&ht.get(m.getKey())>strPalindromeMaxCount)
                 {
+                    strPalindromeMaxCount = ht.get(m.getKey());
                     strPalindromeMax = m.getKey();
                 }
             }
@@ -43,6 +45,6 @@ class Solution {
             }
         }
 
-        return nonPalindromeMax+palindromeMax+ht.getOrDefault(strPalindromeMax,0)*2;
+        return nonPalindromeMax+palindromeMax+strPalindromeMaxCount*2;
     }
 }
