@@ -18,7 +18,7 @@ class Solution {
                     central = true;
                 }
             // consider a pair of non-palindrome words such that one is the reverse of another
-            } else if (word.charAt(0) < word.charAt(1)) {
+            } else if (word.charAt(0) > word.charAt(1)) {
                 String reversedWord = "" + word.charAt(1) + word.charAt(0);
                 if (count.containsKey(reversedWord)) {
                     answer += 2 * Math.min(countOfTheWord, count.get(reversedWord));
