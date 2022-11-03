@@ -4,28 +4,30 @@ class Solution {
         Hashtable<String,Integer> ht = new Hashtable<>();
         int palindromeMax = 0;
         int nonPalindromeMax = 0;
-        String strPalindromeMax = "";
-        int strPalindromeMaxCount = 0;
+        String oddPalindromeMaxStr = "";
+        int oddCountPalindromeMax = 0;
         
         for(String word:words)
         {
             ht.put(word,ht.getOrDefault(word,0)+1);
         }
+        
         for(Map.Entry<String,Integer> m:ht.entrySet())
         {
             char[] charArr = m.getKey().toCharArray();
             if(charArr[0]==charArr[1])
             {
-                if(ht.get(m.getKey())%2!=0&&ht.get(m.getKey())>strPalindromeMaxCount)
+                if(ht.get(m.getKey())%2!=0&&ht.get(m.getKey())>oddCountPalindromeMax)
                 {
-                    strPalindromeMaxCount = ht.get(m.getKey())*2;
-                    strPalindromeMax = m.getKey();
+                    oddCountPalindromeMax = ht.get(m.getKey())*2;
+                    oddPalindromeMaxStr = m.getKey();
                 }
             }
         }
+        
         for(Map.Entry<String,Integer> m:ht.entrySet())
         {  
-            if(m.getKey().equals(strPalindromeMax))
+            if(m.getKey().equals(oddPalindromeMaxStr))
                 continue;
             char[] charArr = m.getKey().toCharArray();
             if(charArr[0]==charArr[1])
@@ -41,6 +43,6 @@ class Solution {
             }
         }
 
-        return nonPalindromeMax+palindromeMax+strPalindromeMaxCount;
+        return nonPalindromeMax+palindromeMax+oddCountPalindromeMax;
     }
 }
