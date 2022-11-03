@@ -2,12 +2,7 @@ class Solution {
     public int longestPalindrome(String[] words) {
         HashMap<String, Integer> count = new HashMap<String, Integer>();
         for (String word : words) {
-            Integer countOfTheWord = count.get(word);
-            if (countOfTheWord == null) {
-                count.put(word, 1);
-            } else {
-                count.put(word, countOfTheWord + 1);
-            }
+            count.put(word,count.getOrDefault(word,0)+1);
         }
         int answer = 0;
         boolean central = false;
