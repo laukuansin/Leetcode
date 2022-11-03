@@ -17,7 +17,7 @@ class Solution {
             {
                 if(ht.get(m.getKey())%2!=0&&ht.get(m.getKey())>strPalindromeMaxCount)
                 {
-                    strPalindromeMaxCount = ht.get(m.getKey());
+                    strPalindromeMaxCount = ht.get(m.getKey())*2;
                     strPalindromeMax = m.getKey();
                 }
             }
@@ -45,6 +45,6 @@ class Solution {
             }
         }
 
-        return nonPalindromeMax+palindromeMax+strPalindromeMaxCount*2;
+        return nonPalindromeMax+palindromeMax+strPalindromeMaxCount;
     }
 }
