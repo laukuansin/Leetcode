@@ -9,33 +9,41 @@ class Solution {
         int[] count2 = new int[26];
         char[] word1Arr = word1.toCharArray();
         char[] word2Arr = word2.toCharArray();
-        for(int i=0;i<word1Arr.length;i++)
+        TreeMap<Integer,Integer> treeMap1 = new TreeMap<>();
+        TreeMap<Integer,Integer> treeMap2 = new TreeMap<>();
+        for(int i=0;i<word2.length();i++)
         {
             count1[word1Arr[i]-'a']++;
-        }
-        for(int i=0;i<word2Arr.length;i++)
-        {
             count2[word2Arr[i]-'a']++;
         }
 
         for(int i=0;i<26;i++)
         {
             if(count1[i]==0&&count2[i]==0)
+            {
                 continue;
+            }
             else if(count1[i]>0&&count2[i]>0)
-                continue;
-            else
+            {
+                treeMap1.put(count1[i],treeMap1.getOrDefault(count1[i],0)+1);
+                treeMap2.put(count2[i],treeMap2.getOrDefault(count2[i],0)+1);
+            }
+            else{
                 return false;
+            }
         }
-        Arrays.sort(count1);
-        Arrays.sort(count2);
-
-        for(int i=0;i<26;i++)
-        {
-            if(count1[i]!=count2[i])
+         for (Map.Entry<Integer, Integer> e :treeMap1.entrySet())
+         {
+            if(treeMap2.containsKey(e.getKey()))
+            {
+                if(treeMap2.get(e.getKey())!=e.getValue())
+                    return false;
+            }
+            else{
                 return false;
-        }
-        return true;
+            }
+         }
     
+        return true;
     }
 }
