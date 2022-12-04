@@ -11,7 +11,6 @@ class Solution {
             total+=num;
         }
         
-        
         for(int i=0;i<n;i++)
         {
             start+=nums[i];
