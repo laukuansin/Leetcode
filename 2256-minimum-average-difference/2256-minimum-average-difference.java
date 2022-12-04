@@ -20,8 +20,8 @@ class Solution {
             int frontCount = i+1;
             int endCount = n-i-1;
             
-            int frontAve = Math.round((start/frontCount));
-            int endAve = i==n-1?0:Math.round((total/endCount));
+            int frontAve = Math.round(start/frontCount);
+            int endAve = i==n-1?0:Math.round(total/endCount);
             
             int currAbs = Math.abs(frontAve-endAve);
             if(currAbs<min)
