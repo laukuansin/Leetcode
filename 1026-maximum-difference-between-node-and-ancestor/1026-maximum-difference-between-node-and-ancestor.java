@@ -15,9 +15,9 @@
  */
 class Solution {
     int max = Integer.MIN_VALUE;
+    
     public int maxAncestorDiff(TreeNode root) {
         helper(root,root.val,root.val);
-        
         return max;
     }
     
@@ -25,10 +25,11 @@ class Solution {
     {
         if(root==null)
             return;
-        int curMaxAbs = Math.abs(curMax-root.val);
-        int curMinAbs = Math.abs(curMin-root.val);
-        max = Math.max(curMaxAbs,Math.max(curMinAbs,max));
-        helper(root.left,Math.max(curMax,root.val),Math.min(curMin,root.val));
-        helper(root.right,Math.max(curMax,root.val),Math.min(curMin,root.val));
+        
+        int curMaxAbs = Math.abs(curMax-root.val);//get the difference from the current Min and current value
+        int curMinAbs = Math.abs(curMin-root.val);//get the difference from th current Max and current value
+        max = Math.max(curMaxAbs,Math.max(curMinAbs,max));//get the maximum difference between these 3 value
+        helper(root.left,Math.max(curMax,root.val),Math.min(curMin,root.val));//rercusive left node
+        helper(root.right,Math.max(curMax,root.val),Math.min(curMin,root.val));//recursive right node
     }
 }
