@@ -2,24 +2,14 @@ class Solution {
     public int[] dailyTemperatures(int[] temperatures) {
         int size = temperatures.length;
         int[] res = new int[size];
-        Stack<Pair<Integer,Integer>> stack = new Stack<>();
-        for(int i=size-1;i>=0;i--)
+        Stack<Integer> stack = new Stack<>();
+        for(int i=0;i<size;i++)
         {
-            int count = 1;
-            while(!stack.empty()&&temperatures[i]>=stack.peek().getKey())
+            while(!stack.empty()&&temperatures[i]>temperatures[stack.peek()])
             {   
-                count+=stack.peek().getValue();
-                stack.pop();
+                res[stack.peek()]=i-stack.pop();
             }
-            if(stack.empty())
-            {
-                res[i] = 0;
-                stack.push(new Pair<>(temperatures[i],0));
-            }
-            else{
-                res[i] = count;
-                stack.push(new Pair<>(temperatures[i],count));
-            }
+            stack.push(i);
         }
         return res;
     }
