@@ -1,56 +1,47 @@
 class Solution {
     public boolean possibleBipartition(int n, int[][] dislikes) {
-       int[] color = new int[n+1];
+       int[] colors = new int[n+1];
        HashMap<Integer,List<Integer>> graph = new HashMap<>();
-       for(int i=0;i<dislikes.length;i++)
+       for(int i=1;i<=n;i++)
        {
-           int a = dislikes[i][0];
-           int b = dislikes[i][1];
-           List<Integer> list1 = graph.getOrDefault(a,new ArrayList<>());
-           List<Integer> list2 = graph.getOrDefault(b,new ArrayList<>());
-           list1.add(b);
-           list2.add(a);
-           graph.put(a,list1);
-           graph.put(b,list2);
+           graph.put(i,new ArrayList<>());
        }
-       Set<Integer> set = new HashSet<>();
        for(int i=0;i<dislikes.length;i++)
        {
            int a = dislikes[i][0];
            int b = dislikes[i][1];
-           set.add(a);
-           helper(a,set,color,graph,1);
-           set.add(b);
-           helper(b,set,color,graph,1);
+          
+           graph.get(a).add(b);
+           graph.get(b).add(a);
+       }
 
-           if(color[a]==color[b])
+       for(int i=1;i<=n;i++)
+       {
+           if(colors[i]==0)
            {
-               return false;
+               if(!helper(i,colors,graph,1))
+               {
+                   return false;
+               }
            }
        }
        return true;
     }
 
-    public void helper(int node,Set<Integer> set,int[] color,HashMap<Integer,List<Integer>> graph,int multiple)
-    {
-        List<Integer> adjNodes = graph.get(node);
-
-        for(int adjNode:adjNodes)
+    public boolean helper(int node,int[] colors,HashMap<Integer,List<Integer>> graph,int color)
+    {   
+        colors[node] = color;
+        for(int adjNode:graph.get(node))
         {
-            if(set.contains(adjNode))
+            if(colors[adjNode]==0)
             {
-                continue;
+                helper(adjNode,colors,graph,color*-1);
             }
-            if(color[node]==0)
+            else if(colors[node]==colors[adjNode])
             {
-                color[node] = 1*multiple;
+                return false;
             }
-            if(color[adjNode]==0)
-            {
-                color[adjNode] = -1*multiple;
-            }
-            set.add(adjNode);
-            helper(adjNode,set,color,graph,color[adjNode]);
         }
+        return true;
     }
 }
