@@ -17,12 +17,9 @@ class Solution {
 
        for(int i=1;i<=n;i++)
        {
-           if(colors[i]==0)
+           if(colors[i]==0&&!helper(i,colors,graph,1))
            {
-               if(!helper(i,colors,graph,1))
-               {
-                   return false;
-               }
+               return false;
            }
        }
        return true;
@@ -33,11 +30,7 @@ class Solution {
         colors[node] = color;
         for(int adjNode:graph.get(node))
         {
-            if(colors[adjNode]==0)
-            {
-                helper(adjNode,colors,graph,color*-1);
-            }
-            else if(colors[node]==colors[adjNode])
+            if(colors[node]==colors[adjNode]||colors[adjNode]==0&&!helper(adjNode,colors,graph,color*-1))
             {
                 return false;
             }
