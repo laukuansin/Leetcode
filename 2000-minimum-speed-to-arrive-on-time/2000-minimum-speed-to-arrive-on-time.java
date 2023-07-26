@@ -6,12 +6,7 @@ class Solution {
         }
         int start = 1;
         int end = 10000000;
-
-        for(int i:dist)
-        {
-            end = Math.max(end,i);
-        }
-
+        
         while(start<end)
         {
             int middle = (end-start)/2+start;
