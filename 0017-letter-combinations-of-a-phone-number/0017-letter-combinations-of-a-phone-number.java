@@ -25,15 +25,13 @@ class Solution {
             return;
         }
 
-        for(int i = index ; i < digits.length() ; i++)
+        String[] stringArr = hashMap.get(digits.charAt(index));
+        for(String str:stringArr)
         {
-            String[] stringArr = hashMap.get(digits.charAt(i));
-            for(String str:stringArr)
-            {
-                sb.append(str);
-                helper(ans,sb,i+1,digits,hashMap);
-                sb.deleteCharAt(sb.length()-1);
-            }
+            sb.append(str);
+            helper(ans,sb,index+1,digits,hashMap);
+            sb.deleteCharAt(sb.length()-1);
         }
+        
     }
 }
