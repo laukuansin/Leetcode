@@ -1,56 +1,58 @@
 class Solution {
     public int romanToInt(String s) {
-        HashMap<Character,Integer> hashmap = new HashMap<>();
-        hashmap.put('I',1);
-        hashmap.put('V',5);
-        hashmap.put('X',10);
-        hashmap.put('L',50);
-        hashmap.put('C',100);
-        hashmap.put('D',500);
-        hashmap.put('M',1000);
+        HashMap<Character,Integer> hashMap = new HashMap<>();
+        hashMap.put('I',1);
+        hashMap.put('V',5);
+        hashMap.put('X',10);
+        hashMap.put('L',50);
+        hashMap.put('C',100);
+        hashMap.put('D',500);
+        hashMap.put('M',1000);
+
+        int ans = 0;
         
-        char[] charArray = s.toCharArray();
-        int total = 0;
-        
-        for(int i=0;i<s.length();i++)
+        for(int i = s.length()-1; i >=0 ; i--)
         {
-            char currentChar = charArray[i];
-            if(i+1<s.length())
+            if(i==s.length()-1)
             {
-                char nextChar = charArray[i+1];
-                if(currentChar=='I')
+                ans+=hashMap.get(s.charAt(i));
+            }
+            else{
+                if(s.charAt(i)=='I')
                 {
-                    if(nextChar=='V'||nextChar=='X')
+                    if(s.charAt(i+1)=='V'||s.charAt(i+1)=='X')
                     {
-                        total = total +(hashmap.get(nextChar)-hashmap.get(currentChar));
-                        i++;
-                        continue;
+                        ans-=hashMap.get(s.charAt(i));
+                    }
+                    else{
+                        ans+=hashMap.get(s.charAt(i));
                     }
                 }
-                else if(currentChar=='X')
+                else if(s.charAt(i)=='X')
                 {
-                    if(nextChar=='L'||nextChar=='C')
+                    if(s.charAt(i+1)=='L'||s.charAt(i+1)=='C')
                     {
-                        total = total +(hashmap.get(nextChar)-hashmap.get(currentChar));
-                        i++;
-                        continue;
+                        ans-=hashMap.get(s.charAt(i));
+                    }
+                    else{
+                        ans+=hashMap.get(s.charAt(i));
                     }
                 }
-                else if(currentChar=='C')
+                else if(s.charAt(i)=='C')
                 {
-                    if(nextChar=='D'||nextChar=='M')
+                    if(s.charAt(i+1)=='D'||s.charAt(i+1)=='M')
                     {
-                        total = total +(hashmap.get(nextChar)-hashmap.get(currentChar));
-                        i++;
-                        continue;
+                        ans-=hashMap.get(s.charAt(i));
                     }
+                    else{
+                        ans+=hashMap.get(s.charAt(i));
+                    }
+                }
+                else{
+                    ans+=hashMap.get(s.charAt(i));
                 }
             }
-            
-            total+=hashmap.get(currentChar);
-            
         }
-        
-        return total;
+        return ans;
     }
 }
