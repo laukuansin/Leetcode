@@ -2,8 +2,11 @@ class MyStack {
     Queue<Integer> queue1;
     Queue<Integer> queue2;
     public MyStack() {
-        queue1 = new LinkedList<>();
-        queue2 = new LinkedList<>();
+        // first -> last
+        // 1,2,3,4,5
+
+        queue1 = new LinkedList<>();//3
+        queue2 = new LinkedList<>();//2,1
     }
     
     public void push(int x) {
@@ -16,29 +19,26 @@ class MyStack {
             queue2.add(queue1.poll());
         }
         int popVal = queue1.poll();
-
         while(!queue2.isEmpty())
         {
             queue1.add(queue2.poll());
         }
-
         return popVal;
     }
     
     public int top() {
-        while(queue1.size()>1)
+        int topVal = -1;
+        while(!queue1.isEmpty())
         {
-            queue2.add(queue1.poll());
+            topVal = queue1.poll();
+            queue2.add(topVal);
         }
-        int peekVal = queue1.poll();
-        queue2.add(peekVal);
-
+       
         while(!queue2.isEmpty())
         {
             queue1.add(queue2.poll());
         }
-
-        return peekVal;
+        return topVal;
     }
     
     public boolean empty() {
