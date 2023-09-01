@@ -5,20 +5,23 @@ class Solution {
     // 1011 - >3
     // 1
     public int[] countBits(int n) {
+        if(n==0)
+            return new int[]{0};
+        if(n==1)
+            return new int[]{0,1};
+
         int[] ans = new int[n+1];
-        for(int i = 0 ; i <= n ; i ++)
+        ans[1] = 1;
+        int binary = 2;
+        for(int i = 2 ; i <= n ; i ++)
         {
-            int count = 0;
-            int tmp = i;
-            while(tmp!=0)
-            {
-                if(tmp%2==1)
-                {
-                    count++;
-                }
-                tmp>>=1;
-            }
-            ans[i] = count;
+           if((i&(i-1))==0)
+           {
+               binary = i;
+               ans[i] = 1;
+               continue;
+           }
+           ans[i] = ans[i-binary]+ans[binary];
         }
 
         return ans;
