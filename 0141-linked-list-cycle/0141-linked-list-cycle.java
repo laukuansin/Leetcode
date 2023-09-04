@@ -11,20 +11,19 @@
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        HashMap<ListNode,Integer> hashMap = new HashMap<>();
-        ListNode tmp = head;
-        while(tmp!=null)
-        {
-            if(hashMap.containsKey(tmp))
-            {
-                return true;
-            }
-            else{
-                hashMap.put(tmp,1);
-                tmp = tmp.next;
-            }
-        }
+       ListNode slow = head;
+       ListNode fast = head;
 
-        return false;
+       while(fast!=null&&fast.next!=null)
+       {
+           slow = slow.next;
+           fast = fast.next.next;
+           if(slow==fast)
+           {
+               return true;
+           }
+       }
+
+       return false;
     }
 }
