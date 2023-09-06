@@ -16,16 +16,11 @@ class Solution {
             return new ListNode[]{head};
 
         ListNode[] ans = new ListNode[k];
-        int totalSize = 0;
-        ListNode cur = head;
-        while(cur!=null)
-        {
-            totalSize++;
-            cur = cur.next;
-        }
+        int totalSize = getSize(head);
         int sizePerElement = totalSize/k;
         int extraAddOnPerElement = totalSize%k;
-        cur = head;
+
+        ListNode cur = head;
         ListNode prv = null;
 
         for(int i = 0 ; i < k ; i++)
@@ -52,5 +47,17 @@ class Solution {
         }
 
         return ans;
+    }
+
+    public int getSize(ListNode head)
+    {
+        int totalSize = 0;
+        ListNode cur = head;
+        while(cur!=null)
+        {
+            totalSize++;
+            cur = cur.next;
+        }
+        return totalSize;
     }
 }
