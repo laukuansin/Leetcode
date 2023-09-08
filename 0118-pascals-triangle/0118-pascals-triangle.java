@@ -1,7 +1,6 @@
 class Solution {
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> ans = new ArrayList<>();
-        List<Integer> defaultList = new ArrayList<>();
         for(int i = 0 ; i < numRows ; i++)
         {
             List<Integer> curList = new ArrayList<>();
@@ -25,6 +24,7 @@ class Solution {
                     curList.add(prvVal+curVal);
                 }
             }
+
             ans.add(curList);
         }
        
