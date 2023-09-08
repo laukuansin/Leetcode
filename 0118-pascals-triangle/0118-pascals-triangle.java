@@ -25,7 +25,7 @@ class Solution {
                     curList.add(prvVal+curVal);
                 }
             }
-            ans.add(new ArrayList<>(curList));
+            ans.add(curList);
         }
        
         return ans;
