@@ -3,6 +3,7 @@ class Solution {
         int[] count = new int[26];
         HashMap<Integer,Integer> hashMap = new HashMap<>();
         int ans = 0;
+        
         for(char c : s.toCharArray())
         {
             count[c-'a']++;
