@@ -18,7 +18,6 @@ class Solution {
             {
                 curFreq--;
             }
-
             if(curFreq>0)
             {
                 hashMap.put(curFreq,i);
