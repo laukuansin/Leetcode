@@ -8,17 +8,22 @@ class Solution {
 
         for(int i = 0 ; i < row ; i ++)
         {
-            int j = 0;
-            for(j = 0 ; j < col ; j++)
+            int start = 0;
+            int end = col;
+            while(start<end)
             {
-                if(mat[i][j] == 0)
+                int middle = (end-start)/2+start;
+                if(mat[i][middle]==0)
                 {
-                    break;
+                    end = middle;
+                }
+                else{
+                    start = middle+1;
                 }
             }
-            pq.add(new int[]{j,i});
+            pq.add(new int[]{start,i});
         }
-        
+
         int index = 0;
         while(index<k)
         {
