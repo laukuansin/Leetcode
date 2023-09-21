@@ -8,10 +8,6 @@ class Solution {
         }
 
         sum-=x;
-        if(sum<0)
-        {
-            return -1;
-        }
 
         int curSum = 0;
         int start = 0;
