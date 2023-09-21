@@ -17,7 +17,6 @@ class Solution {
         int curSum = 0;
         int start = 0;
         int end = 0;
-        //sum = 6
         
         while(start<n&&end<n)
         {
