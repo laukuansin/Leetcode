@@ -1,6 +1,5 @@
 class Solution {
     public int minOperations(int[] nums, int x) {
-        int n = nums.length;
         int sum = 0;
         int ans = Integer.MIN_VALUE;
         for(int num:nums)
@@ -18,10 +17,10 @@ class Solution {
         int start = 0;
         int end = 0;
         
-        while(start<n&&end<n)
+        while(start<nums.length&&end<nums.length)
         {
             curSum+=nums[end];
-            while(start<n&&sum-curSum<0)
+            while(start<=end&&sum-curSum<0)
             {
                 curSum-=nums[start++];
             }
@@ -32,7 +31,7 @@ class Solution {
             end++;
         }
 
-        return ans==Integer.MIN_VALUE?-1:n-ans;
+        return ans==Integer.MIN_VALUE?-1:nums.length-ans;
     }
 
 }
