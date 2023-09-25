@@ -4,15 +4,15 @@ class Solution {
         int result = 0;
         for(char charS : s.toCharArray())
         {
-            result ^= (charS-'a');
+            result ^= charS;
         }
 
         for(char charT : t.toCharArray())
         {
-            result ^= (charT-'a');
+            result ^= charT;
         }
 
-        return (char)(result+'a');
+        return (char)result;
     }
     // Hash Table
     // public char findTheDifference(String s, String t) {
