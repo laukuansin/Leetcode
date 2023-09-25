@@ -1,19 +1,37 @@
 class Solution {
-    public char findTheDifference(String s,String t)
+    public char findTheDifference(String s, String t)
     {
-        int result = 0;
-        for(char charS : s.toCharArray())
+        char[] charArrS = s.toCharArray();
+        char[] charArrT = t.toCharArray();
+        Arrays.sort(charArrS);
+        Arrays.sort(charArrT);
+        int i = 0;
+        for(; i < s.length() ; i++)
         {
-            result ^= charS;
+            //System.out.println(charArr[]"");
+            if(charArrS[i]!=charArrT[i])
+            {
+                return charArrT[i];
+            }
         }
 
-        for(char charT : t.toCharArray())
-        {
-            result ^= charT;
-        }
-
-        return (char)result;
+        return charArrT[i];
     }
+    // public char findTheDifference(String s,String t)
+    // {
+    //     int result = 0;
+    //     for(char charS : s.toCharArray())
+    //     {
+    //         result ^= charS;
+    //     }
+
+    //     for(char charT : t.toCharArray())
+    //     {
+    //         result ^= charT;
+    //     }
+
+    //     return (char)result;
+    // }
     // Hash Table
     // public char findTheDifference(String s, String t) {
     //     if(s=="")
